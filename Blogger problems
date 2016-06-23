@@ -1,0 +1,5 @@
+Blogger problems
+
+For some reason I had problems getting rake db:migrate to actually update the db. After a quick google search I found the answer and it worked fine.
+
+http://stackoverflow.com/questions/9896488/rake-dbmigrate-is-not-working
