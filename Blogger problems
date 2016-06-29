@@ -1,5 +1,59 @@
 Blogger problems
 
-For some reason I had problems getting rake db:migrate to actually update the db. After a quick google search I found the answer and it worked fine.
+Git and Github issues I encountered during this process
+
+1. For some reason I had problems getting rake db:migrate to actually update the db. After a quick google search I found the answer and it worked fine.
 
 http://stackoverflow.com/questions/9896488/rake-dbmigrate-is-not-working
+
+
+2. I got an error when I first tried to commit my changes that said 'commit'' was not a valid file or command. I don't remember the exact wording because I forgot to save it.
+
+The solution was to use double quotes instead of single quotes. Go figure. 
+
+3. Git Push Request Rejected 
+	
+	When I tried to push my work to git hub I got an error message like this:
+
+	! [rejected]        feature/my_feature_branch -> feature/my_feature_branch (non-fast-forward)
+error: failed to push some refs to 'https://git@github.com.com:xxxx/myproject.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+I tried to rebase the repo as suggested here:
+
+http://stackoverflow.com/questions/20467179/git-push-rejected-non-fast-forward
+
+But for whatever reason that didn't solve the issue.
+
+I tried a couple of git pull, git fetch, git merge suggestions I found on stack overflow without success. After about an hour or so through this rabbit hole I decided to delete the repo and start fresh. 
+
+Burning the whole thing down and starting fresh isn't a solid long term strategy but I figure since I'm the only user and there was no information to lose it should be ok this time.
+
+Here is a link to the step by step for this:
+
+https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+
+**Note that I had to use this command first:
+	
+	git rm -rf .git
+
+This removes the original .git file and allows you to start fresh, free from additional errors.
+
+4. Kept getting this error:
+
+ActionController::InvalidAuthenticityToken in ArticlesController#create
+
+Solution
+
+I added this code to the beginning of the ArticlesController class in the articles_controller.rb file:
+
+skip_before_action :verify_authenticity_token
+
+found the solution here - https://codedump.io/share/AGtpmiaWIK2k/1/rails-actioncontrollerinvalidauthenticitytoken-when-adding-a-image
+
+**Need to solve the problem instead of patching it
+
+5. flash.notice does not show after an udpate
