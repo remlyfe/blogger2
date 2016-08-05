@@ -57,3 +57,21 @@ found the solution here - https://codedump.io/share/AGtpmiaWIK2k/1/rails-actionc
 **Need to solve the problem instead of patching it
 
 5. flash.notice does not show after an udpate
+
+6. SQLITE3::SQLEXCEPTION: TABLE ALREADY EXISTS
+Could not complete rake db:migrate process to start the tagging section because I had two Create Comments files in the migration file. They were identical so I deleted the older one. 
+
+That's where this error popped up. I initially tried to drop the table and recreate it with this code in the migration file above the CreateComments code:
+
+class RemoveComments < ActiveRecord::Migration
+	def change
+		drop_table :comments
+	end
+end
+
+I got the idea from this thread on stack overflow:
+
+http://stackoverflow.com/questions/18961900/error-to-migrate-db-rails
+
+Unfortunately that also did not work. I eventually decided to try deleting both CreateComments files. That worked just fine. Not really sure why.
+
