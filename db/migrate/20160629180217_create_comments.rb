@@ -1,3 +1,9 @@
+class RemoveComments < ActiveRecord::Migration
+	def change
+		drop_table :comments
+	end
+end
+
 class CreateComments < ActiveRecord::Migration
   def change
     create_table :comments do |t|
